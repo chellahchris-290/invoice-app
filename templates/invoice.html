@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create Invoice</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>Create Invoice</h1>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <form action="/preview" method="POST">
+
+            <p>
+                Customer Name
+            </p>
+
+            <input type="text"
+                   name="customer"
+                   required>
+
+            <p>
+                Invoice Number
+            </p>
+
+            <input type="text"
+                   name="invoice_number"
+                   required>
+
+            <p>
+                Amount
+            </p>
+
+            <input type="number"
+                   name="amount"
+                   required>
+
+            <br><br>
+
+            <button type="submit">
+                Generate Invoice
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

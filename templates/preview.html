@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Invoice Preview</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>Invoice Preview</h1>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Invoice Details</h2>
+
+        <p>
+            <strong>Customer:</strong>
+            {{ customer }}
+        </p>
+
+        <p>
+            <strong>Invoice Number:</strong>
+            {{ invoice_number }}
+        </p>
+
+        <p>
+            <strong>Amount:</strong>
+            ${{ amount }}
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>All Invoices</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>All Invoices</h1>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <table border="1" cellpadding="10">
+
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Invoice Number</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+
+            {% for invoice in invoices %}
+
+            <tr>
+                <td>{{ invoice[0] }}</td>
+                <td>{{ invoice[1] }}</td>
+                <td>{{ invoice[2] }}</td>
+                <td>{{ invoice[3] }}</td>
+                <td>
+    <a href="/delete/{{ invoice[0] }}">
+        Delete
+    </a>
+</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
