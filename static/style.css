@@ -1,16 +1,54 @@
-body {
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
     background: #f4f7fb;
 }
 
-header {
-    background: #1e293b;
-    color: white;
-    padding: 20px;
+.layout {
+    display: flex;
+    min-height: 100vh;
 }
 
-.container {
+.sidebar {
+    width: 250px;
+    background: #0f172a;
+    color: white;
+    padding: 25px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    color: #cbd5e1;
+    font-size: 13px;
+    margin-bottom: 40px;
+}
+
+.nav-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.nav-link:hover {
+    background: #1e293b;
+}
+
+.main-content {
+    flex: 1;
     padding: 30px;
 }
 
@@ -22,22 +60,23 @@ header {
 
 .stat-card {
     background: white;
+    padding: 25px;
     width: 220px;
-    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .stat-card h3 {
-    margin-top: 0;
+    color: #64748b;
+    margin-bottom: 10px;
 }
 
 .card {
     background: white;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
-    margin-top: 20px;
+    margin-top: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 button {
@@ -60,10 +99,21 @@ table {
 }
 
 th {
-    background: #1e293b;
+    background: #0f172a;
     color: white;
 }
+h1 {
+    font-weight: 700;
+    letter-spacing: -1px;
+}
 
+h2 {
+    font-weight: 600;
+}
+
+h3 {
+    font-weight: 600;
+}
 th, td {
     padding: 12px;
     border: 1px solid #ddd;

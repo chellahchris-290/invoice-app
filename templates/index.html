@@ -2,8 +2,16 @@
 <html>
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <title>SME Invoice System</title>
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+    <title>InvoiceFlow</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
@@ -12,75 +20,72 @@
 
 <body>
 
-<header>
-    <h1>SME Invoice System</h1>
-</header>
+<div class="layout">
 
-<div class="container">
+    <div class="sidebar">
 
-    <div class="stats">
-
-        <div class="stat-card">
-            <h3>Total Invoices</h3>
-            <h1>{{ total_invoices }}</h1>
+        <div class="logo">
+            InvoiceFlow
         </div>
 
-        <div class="stat-card">
-            <h3>Total Revenue</h3>
-            <h1>${{ total_revenue }}</h1>
+        <div class="tagline">
+            Create, track and manage invoices effortlessly.
         </div>
 
-        <div class="stat-card">
-            <h3>Customers</h3>
-            <h1>{{ total_customers }}</h1>
-        </div>
-
-    </div>
-
-    <div class="card">
-
-        <h2>Quick Actions</h2>
-
-        <a href="/invoice">
-            <button>Create Invoice</button>
+        <a href="/" class="nav-link">
+            Dashboard
         </a>
 
-        <a href="/invoices">
-            <button>View Invoices</button>
+        <a href="/invoice" class="nav-link">
+            Create Invoice
+        </a>
+
+        <a href="/invoices" class="nav-link">
+            View Invoices
         </a>
 
     </div>
 
-</div>
+    <div class="main-content">
 
-    <div class="card">
-
-        <h2>Dashboard</h2>
-
-        <p>
-            Total Invoices:
-            <strong>{{ total_invoices }}</strong>
-        </p>
-
-        <p>
-            Total Revenue:
-            <strong>${{ total_revenue }}</strong>
-        </p>
-
-        <p>
-            Total Customers:
-            <strong>{{ total_customers }}</strong>
-        </p>
+        <h1>Dashboard</h1>
 
         <br>
 
-        <a href="/invoice">
-            <button>Create Invoice</button>
-        </a>
+        <div class="stats">
 
-        <a href="/invoices">
-            <button>View Invoices</button>
-        </a>
+            <div class="stat-card">
+                <h3>Total Invoices</h3>
+                <h1>{{ total_invoices }}</h1>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Revenue</h3>
+                <h1>${{ total_revenue }}</h1>
+            </div>
+
+            <div class="stat-card">
+                <h3>Customers</h3>
+                <h1>{{ total_customers }}</h1>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Quick Actions</h2>
+
+            <br>
+
+            <a href="/invoice">
+                <button>Create Invoice</button>
+            </a>
+
+            <a href="/invoices">
+                <button>View Invoices</button>
+            </a>
+
+        </div>
 
     </div>
 
