@@ -2,10 +2,12 @@
 <html>
 
 <head>
+
     <title>SME Invoice System</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
@@ -16,22 +18,69 @@
 
 <div class="container">
 
+    <div class="stats">
+
+        <div class="stat-card">
+            <h3>Total Invoices</h3>
+            <h1>{{ total_invoices }}</h1>
+        </div>
+
+        <div class="stat-card">
+            <h3>Total Revenue</h3>
+            <h1>${{ total_revenue }}</h1>
+        </div>
+
+        <div class="stat-card">
+            <h3>Customers</h3>
+            <h1>{{ total_customers }}</h1>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Quick Actions</h2>
+
+        <a href="/invoice">
+            <button>Create Invoice</button>
+        </a>
+
+        <a href="/invoices">
+            <button>View Invoices</button>
+        </a>
+
+    </div>
+
+</div>
+
     <div class="card">
 
         <h2>Dashboard</h2>
 
         <p>
-            Welcome to your invoice management system.
+            Total Invoices:
+            <strong>{{ total_invoices }}</strong>
         </p>
 
-        <a href="/invoice">
-    <button>Create Invoice</button>
-    <br><br>
+        <p>
+            Total Revenue:
+            <strong>${{ total_revenue }}</strong>
+        </p>
 
-<a href="/invoices">
-    <button>View Invoices</button>
-</a>
-</a>
+        <p>
+            Total Customers:
+            <strong>{{ total_customers }}</strong>
+        </p>
+
+        <br>
+
+        <a href="/invoice">
+            <button>Create Invoice</button>
+        </a>
+
+        <a href="/invoices">
+            <button>View Invoices</button>
+        </a>
 
     </div>
 

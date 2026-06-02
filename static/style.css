@@ -1,12 +1,11 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
 }
 
 header {
-    background-color: #1f4e79;
+    background: #1e293b;
     color: white;
     padding: 20px;
 }
@@ -15,22 +14,57 @@ header {
     padding: 30px;
 }
 
+.stats {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: white;
+    width: 220px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+    margin-top: 0;
+}
+
 .card {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+    margin-top: 20px;
 }
 
 button {
-    background-color: #1f4e79;
+    background: #2563eb;
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
+    padding: 12px 18px;
+    border-radius: 8px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 button:hover {
     opacity: 0.9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #1e293b;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
 }

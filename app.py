@@ -5,6 +5,33 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+
+    connection = sqlite3.connect("invoices.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM invoices")
+    total_invoices = cursor.fetchone()[0]
+
+    cursor.execute("SELECT SUM(amount) FROM invoices")
+    total_revenue = cursor.fetchone()[0]
+
+    if total_revenue is None:
+        total_revenue = 0
+
+    cursor.execute(
+        "SELECT COUNT(DISTINCT customer) FROM invoices"
+    )
+    total_customers = cursor.fetchone()[0]
+
+    connection.close()
+
+    return render_template(
+        "index.html",
+        total_invoices=total_invoices,
+        total_revenue=total_revenue,
+        total_customers=total_customers
+    )
     return render_template("index.html")
 
 @app.route("/invoice")
