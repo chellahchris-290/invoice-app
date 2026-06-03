@@ -2,16 +2,14 @@
 <html>
 
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet">
 
     <title>InvoiceFlow</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
@@ -22,6 +20,7 @@
 
 <div class="layout">
 
+    <!-- SIDEBAR -->
     <div class="sidebar">
 
         <div class="logo">
@@ -32,35 +31,29 @@
             Create, track and manage invoices effortlessly.
         </div>
 
-        <a href="/" class="nav-link">
-            Dashboard
-        </a>
-
-        <a href="/invoice" class="nav-link">
-            Create Invoice
-        </a>
-
-        <a href="/invoices" class="nav-link">
-            View Invoices
-        </a>
+        <a href="/" class="nav-link">Dashboard</a>
+        <a href="/invoice" class="nav-link">Create Invoice</a>
+        <a href="/invoices" class="nav-link">View Invoices</a>
 
     </div>
 
+    <!-- MAIN CONTENT -->
     <div class="main-content">
 
-        <h1>Dashboard</h1>
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <p class="subtext">Overview of your business activity</p>
+        </div>
 
-        <br>
-
-        <div class="stats">
+        <div class="stats-grid">
 
             <div class="stat-card">
-                <h3>Total Invoices</h3>
+                <h3>Invoices</h3>
                 <h1>{{ total_invoices }}</h1>
             </div>
 
             <div class="stat-card">
-                <h3>Total Revenue</h3>
+                <h3>Revenue</h3>
                 <h1>${{ total_revenue }}</h1>
             </div>
 
@@ -71,9 +64,12 @@
 
         </div>
 
-        <div class="card">
+        <div class="content-panel">
 
-            <h2>Quick Actions</h2>
+            <div class="panel-header">
+                <h2>Quick Actions</h2>
+                <p class="subtext">Start common business tasks</p>
+            </div>
 
             <br>
 
