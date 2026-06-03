@@ -107,5 +107,40 @@ def delete_invoice(id):
     connection.close()
 
     return redirect("/invoices")
+@app.route("/edit/<int:id>")
+def edit_invoice(id):
+
+    connection = sqlite3.connect("invoices.db")
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "SELECT id, customer, invoice_number, amount FROM invoices WHERE id=?",
+        (id,)
+    )
+
+    invoice = cursor.fetchone()
+    connection.close()
+
+    return render_template("edit_invoice.html", invoice=invoice)
+@app.route("/update/<int:id>", methods=["POST"])
+def update_invoice(id):
+
+    customer = request.form["customer"]
+    invoice_number = request.form["invoice_number"]
+    amount = request.form["amount"]
+
+    connection = sqlite3.connect("invoices.db")
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        UPDATE invoices
+        SET customer=?, invoice_number=?, amount=?
+        WHERE id=?
+    """, (customer, invoice_number, amount, id))
+
+    connection.commit()
+    connection.close()
+
+    return redirect("/invoices")
 if __name__ == "__main__":
     app.run(debug=True)

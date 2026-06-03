@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Invoice - InvoiceFlow</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <div class="sidebar">
+
+        <div class="logo">InvoiceFlow</div>
+
+        <div class="tagline">
+            Create, track and manage invoices effortlessly.
+        </div>
+
+        <a href="/" class="nav-link">Dashboard</a>
+        <a href="/invoice" class="nav-link">Create Invoice</a>
+        <a href="/invoices" class="nav-link">View Invoices</a>
+
+    </div>
+
+    <div class="main-content">
+
+        <h1>Edit Invoice</h1>
+
+        <div class="content-panel">
+
+            <form action="/update/{{ invoice[0] }}" method="POST">
+
+                <p>Customer</p>
+                <input type="text" name="customer" value="{{ invoice[1] }}" required>
+
+                <br><br>
+
+                <p>Invoice Number</p>
+                <input type="text" name="invoice_number" value="{{ invoice[2] }}" required>
+
+                <br><br>
+
+                <p>Amount</p>
+                <input type="number" name="amount" value="{{ invoice[3] }}" required>
+
+                <br><br>
+
+                <button type="submit">Update Invoice</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
