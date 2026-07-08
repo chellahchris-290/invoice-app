@@ -2,57 +2,113 @@
 <html>
 
 <head>
-    <title>All Invoices</title>
+
+    <title>Invoices - InvoiceFlow</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
-<header>
-    <h1>All Invoices</h1>
-</header>
+<div class="layout">
 
-<div class="container">
+    <!-- Sidebar -->
 
-    <div class="card">
+    <div class="sidebar">
 
-        <table border="1" cellpadding="10">
+        <div class="logo">
+            InvoiceFlow
+        </div>
 
-            <tr>
-                <th>ID</th>
-                <th>Customer</th>
-                <th>Invoice Number</th>
-                <th>Amount</th>
-                <th>Action</th>
-            </tr>
+        <div class="tagline">
+            Create, track and manage invoices effortlessly.
+        </div>
 
-            {% for invoice in invoices %}
+        <a href="/" class="nav-link">Dashboard</a>
+        <a href="/invoice" class="nav-link">Create Invoice</a>
+        <a href="/invoices" class="nav-link">Invoices</a>
 
-            <tr>
-                <td>{{ invoice[0] }}</td>
-                <td>{{ invoice[1] }}</td>
-                <td>{{ invoice[2] }}</td>
-                <td>{{ invoice[3] }}</td>
-                <td>
-    <a href="/delete/{{ invoice[0] }}">
-    <td>
-    <a href="/edit/{{ invoice[0] }}">
-        Edit
-    </a>
-    |
-    <a href="/delete/{{ invoice[0] }}">
-        Delete
-    </a>
-</td>
-    </a>
-</td>
-            </tr>
+    </div>
 
-            {% endfor %}
+    <!-- Main Content -->
 
-        </table>
+    <div class="main-content">
+
+        <h1>Invoices</h1>
+
+        <p class="subtext">
+            Manage all your invoices in one place.
+        </p>
+
+        <div class="content-panel">
+
+            <div class="panel-header">
+
+                <a href="/invoice">
+                    <button>+ New Invoice</button>
+                </a>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Invoice Number</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for invoice in invoices %}
+
+                    <tr>
+
+                        <td>{{ invoice[0] }}</td>
+
+                        <td>{{ invoice[1] }}</td>
+
+                        <td>{{ invoice[2] }}</td>
+
+                        <td>${{ invoice[3] }}</td>
+
+                        <td>
+
+                            <a href="/edit/{{ invoice[0] }}" class="edit-btn">
+                                Edit
+                            </a>
+
+                            <a href="/delete/{{ invoice[0] }}" class="delete-btn">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 

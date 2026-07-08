@@ -51,7 +51,61 @@
 
                 <button type="submit">Update Invoice</button>
 
-            </form>
+      <div class="form-wrapper">
+
+    <div class="form-card">
+
+        <div class="form-header">
+            <h1>Create Invoice</h1>
+            <p class="subtext">Build a professional invoice in seconds</p>
+        </div>
+
+        <form action="/invoice" method="POST">
+
+            <div class="form-section">
+
+                <h3>Customer Details</h3>
+
+                <div class="form-grid-2">
+
+                    <div class="form-group">
+                        <label>Customer Name</label>
+                        <input type="text" name="customer" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Invoice Number</label>
+                        <input type="text" name="invoice_number" required>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="form-section">
+
+                <h3>Payment Details</h3>
+
+                <div class="form-grid-1">
+
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" name="amount" required>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="form-footer">
+                <button type="submit">Create Invoice</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
         </div>
 
