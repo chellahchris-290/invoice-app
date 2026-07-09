@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}InvoiceFlow{% endblock %}</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+
+            InvoiceFlow
+
+        </div>
+
+        <div class="tagline">
+
+            Create, track and manage invoices effortlessly.
+
+        </div>
+
+        <a href="/"
+           class="nav-link">
+
+            Dashboard
+
+        </a>
+
+        <a href="/invoice"
+           class="nav-link">
+
+            Create Invoice
+
+        </a>
+
+        <a href="/invoices"
+           class="nav-link">
+
+            View Invoices
+
+        </a>
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main-content">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

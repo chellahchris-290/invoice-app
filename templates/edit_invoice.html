@@ -1,118 +1,97 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>Edit Invoice - InvoiceFlow</title>
+{% block title %}
+Edit Invoice - InvoiceFlow
+{% endblock %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-</head>
+{% block content %}
 
-<body>
+<div class="page-header">
 
-<div class="layout">
+    <h1>Edit Invoice</h1>
 
-    <div class="sidebar">
+    <p class="subtext">
+        Update the invoice information below.
+    </p>
 
-        <div class="logo">InvoiceFlow</div>
+</div>
 
-        <div class="tagline">
-            Create, track and manage invoices effortlessly.
-        </div>
+<div class="create-layout">
 
-        <a href="/" class="nav-link">Dashboard</a>
-        <a href="/invoice" class="nav-link">Create Invoice</a>
-        <a href="/invoices" class="nav-link">View Invoices</a>
+    <!-- LEFT SIDE -->
 
-    </div>
+    <div class="content-panel">
 
-    <div class="main-content">
+        <form action="/update/{{ invoice[0] }}" method="POST">
 
-        <h1>Edit Invoice</h1>
+            <div class="form-group">
 
-        <div class="content-panel">
+                <label>Customer Name</label>
 
-            <form action="/update/{{ invoice[0] }}" method="POST">
-
-                <p>Customer</p>
-                <input type="text" name="customer" value="{{ invoice[1] }}" required>
-
-                <br><br>
-
-                <p>Invoice Number</p>
-                <input type="text" name="invoice_number" value="{{ invoice[2] }}" required>
-
-                <br><br>
-
-                <p>Amount</p>
-                <input type="number" name="amount" value="{{ invoice[3] }}" required>
-
-                <br><br>
-
-                <button type="submit">Update Invoice</button>
-
-      <div class="form-wrapper">
-
-    <div class="form-card">
-
-        <div class="form-header">
-            <h1>Create Invoice</h1>
-            <p class="subtext">Build a professional invoice in seconds</p>
-        </div>
-
-        <form action="/invoice" method="POST">
-
-            <div class="form-section">
-
-                <h3>Customer Details</h3>
-
-                <div class="form-grid-2">
-
-                    <div class="form-group">
-                        <label>Customer Name</label>
-                        <input type="text" name="customer" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Invoice Number</label>
-                        <input type="text" name="invoice_number" required>
-                    </div>
-
-                </div>
+                <input
+                    type="text"
+                    name="customer"
+                    value="{{ invoice[1] }}"
+                    required>
 
             </div>
 
-            <div class="form-section">
+            <div class="form-group">
 
-                <h3>Payment Details</h3>
+                <label>Invoice Number</label>
 
-                <div class="form-grid-1">
-
-                    <div class="form-group">
-                        <label>Amount</label>
-                        <input type="number" name="amount" required>
-                    </div>
-
-                </div>
+                <input
+                    type="text"
+                    name="invoice_number"
+                    value="{{ invoice[2] }}"
+                    required>
 
             </div>
 
-            <div class="form-footer">
-                <button type="submit">Create Invoice</button>
+            <div class="form-group">
+
+                <label>Amount</label>
+
+                <input
+                    type="number"
+                    name="amount"
+                    value="{{ invoice[3] }}"
+                    required>
+
             </div>
+
+            <button
+                class="primary-btn"
+                type="submit">
+
+                Update Invoice
+
+            </button>
 
         </form>
 
     </div>
 
-</div>
+    <!-- RIGHT SIDE -->
 
-        </div>
+    <div class="content-panel">
+
+        <h2>Invoice Information</h2>
+
+        <ul class="tips">
+
+            <li>Update customer details if necessary.</li>
+
+            <li>Keep invoice numbers unique.</li>
+
+            <li>Verify the amount before saving.</li>
+
+            <li>Click <strong>Update Invoice</strong> to save your changes.</li>
+
+        </ul>
 
     </div>
 
 </div>
 
-</body>
-
-</html>
+{% endblock %}

@@ -1,130 +1,99 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
+{% block title %}
 
-    <title>Create Invoice - InvoiceFlow</title>
+Create Invoice - InvoiceFlow
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{% endblock %}
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+{% block content %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+<div class="page-header">
 
-</head>
+    <h1>Create Invoice</h1>
 
-<body>
+    <p class="subtext">
+        Create a professional invoice in less than a minute.
+    </p>
 
-<div class="layout">
+</div>
 
-    <!-- Sidebar -->
+<div class="create-layout">
 
-    <div class="sidebar">
+    <!-- LEFT -->
 
-        <div class="logo">
-            InvoiceFlow
-        </div>
+    <div class="content-panel">
 
-        <div class="tagline">
-            Create, track and manage invoices effortlessly.
-        </div>
+        <form action="/preview" method="POST">
 
-        <a href="/" class="nav-link">Dashboard</a>
-        <a href="/invoice" class="nav-link">Create Invoice</a>
-        <a href="/invoices" class="nav-link">View Invoices</a>
+            <div class="form-group">
 
-    </div>
+                <label>Customer Name</label>
 
-    <!-- Main Content -->
-
-    <div class="main-content">
-
-        <div class="form-wrapper">
-
-            <div class="form-card">
-
-                <div class="form-header">
-
-                    <h1>Create Invoice</h1>
-
-                    <p class="subtext">
-                        Enter the invoice information below.
-                    </p>
-
-                </div>
-
-                <form action="/preview" method="POST">
-
-                    <div class="form-section">
-
-                        <h3>Customer Information</h3>
-
-                        <div class="form-grid-2">
-
-                            <div class="form-group">
-
-                                <label>Customer Name</label>
-
-                                <input
-                                    type="text"
-                                    name="customer"
-                                    required>
-
-                            </div>
-
-                            <div class="form-group">
-
-                                <label>Invoice Number</label>
-
-                                <input
-                                    type="text"
-                                    name="invoice_number"
-                                    required>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-section">
-
-                        <h3>Payment</h3>
-
-                        <div class="form-group">
-
-                            <label>Amount</label>
-
-                            <input
-                                type="number"
-                                name="amount"
-                                required>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-footer">
-
-                        <button type="submit">
-                            Generate Invoice
-                        </button>
-
-                    </div>
-
-                </form>
+                <input
+                    type="text"
+                    name="customer"
+                    placeholder="ABC Trading Ltd"
+                    required>
 
             </div>
 
-        </div>
+            <div class="form-group">
+
+                <label>Invoice Number</label>
+
+                <input
+                    type="text"
+                    name="invoice_number"
+                    placeholder="INV-0001"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Amount</label>
+
+                <input
+                    type="number"
+                    name="amount"
+                    placeholder="0.00"
+                    required>
+
+            </div>
+
+            <button class="primary-btn" type="submit">
+
+                Generate Invoice
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="content-panel">
+
+        <h2>Quick Tips</h2>
+
+        <ul class="tips">
+
+            <li>Use a unique invoice number.</li>
+
+            <li>Double-check customer information.</li>
+
+            <li>Review the amount before generating.</li>
+
+            <li>Keep invoice numbers sequential.</li>
+
+            <li>Export invoices as PDF (coming soon).</li>
+
+        </ul>
 
     </div>
 
 </div>
 
-</body>
-
-</html>
+{% endblock %}
