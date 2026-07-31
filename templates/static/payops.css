@@ -1,0 +1,202 @@
+/* =====================================================
+   PAYOPS DESIGN SYSTEM
+   Version 1.0
+   Foundation
+===================================================== */
+
+/* ---------- Google Font ---------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---------- Reset ---------- */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ---------- Theme ---------- */
+
+:root{
+
+    --bg:#f5f7fa;
+    --surface:#ffffff;
+
+    --sidebar:#131722;
+    --sidebar-hover:#1d2433;
+
+    --primary:#7a5af8;
+    --primary-hover:#6941c6;
+
+    --accent:#c89b3c;
+
+    --success:#12b76a;
+    --warning:#f79009;
+    --danger:#f04438;
+
+    --text:#101828;
+    --muted:#667085;
+
+    --border:#e4e7ec;
+
+    --shadow:
+        0 10px 30px rgba(16,24,40,.05);
+
+    --radius:16px;
+
+}
+
+/* ---------- Body ---------- */
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-size:15px;
+
+    line-height:1.6;
+
+}
+
+/* ---------- Layout ---------- */
+
+.layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar{
+
+    width:260px;
+
+    background:var(--sidebar);
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    padding:30px 22px;
+
+}
+
+/* ---------- Branding ---------- */
+
+.logo{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    letter-spacing:-1px;
+
+    color:white;
+
+}
+
+.tagline{
+
+    margin-top:8px;
+
+    margin-bottom:36px;
+
+    color:#98a2b3;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+}
+
+/* ---------- Navigation ---------- */
+
+.nav-link{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:#d0d5dd;
+
+    padding:13px 16px;
+
+    border-radius:12px;
+
+    margin-bottom:8px;
+
+    font-weight:500;
+
+    transition:.20s;
+
+}
+
+.nav-link:hover{
+
+    background:var(--sidebar-hover);
+
+    color:white;
+
+}
+
+.nav-link.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* ---------- Bottom ---------- */
+
+.sidebar-bottom{
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:24px;
+
+}
+
+/* ---------- Main ---------- */
+
+.main-content{
+
+    flex:1;
+
+    padding:40px;
+
+}
+
+/* ---------- Headings ---------- */
+
+h1{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    letter-spacing:-1px;
+
+}
+
+.subtext{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:15px;
+
+}

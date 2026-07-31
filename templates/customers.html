@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Customers - InvoiceFlow{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <h1>Customers</h1>
+
+    <p class="subtext">
+        Manage your customer database.
+    </p>
+
+</div>
+
+<div class="content-panel">
+
+    <div class="panel-header">
+
+        <h2>Customer List</h2>
+<br>
+
+<a href="/add_customer">
+
+    <button>Add Customer</button>
+
+</a>
+
+<br><br>
+        <p class="subtext">
+            All registered customers.
+        </p>
+
+    </div>
+
+    <table class="invoice-table">
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Phone</th>
+
+            <th>Email</th>
+
+        </tr>
+
+        {% for customer in customers %}
+
+        <tr>
+
+            <td>{{ customer[1] }}</td>
+
+            <td>{{ customer[2] }}</td>
+
+            <td>{{ customer[3] }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}

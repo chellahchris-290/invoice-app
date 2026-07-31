@@ -1,0 +1,373 @@
+{% extends "base.html" %}
+
+{% block title %}
+Estimates
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <h1>Estimates</h1>
+
+    <p class="subtext">
+        Create, manage and send professional client estimates.
+    </p>
+
+</div>
+
+<div class="workspace">
+
+    <!-- LEFT SIDE -->
+
+    <div class="workspace-main">
+
+        <form action="/save-estimate" method="POST"></form>
+
+            <h2 class="section-title">
+                Estimate Details
+            </h2>
+
+            <div class="form-grid-2">
+
+                <div class="form-group">
+
+                    <label>Customer</label>
+
+                    <select name="customer_id" required>
+
+    <option value="">
+        Select Client
+    </option>
+
+    {% for client in clients %}
+
+    <option value="{{ client.id }}">
+
+        {{ client.company_name }}
+
+    </option>
+
+    {% endfor %}
+
+</select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Estimate Number</label>
+
+                    <input
+    type="text"
+    name="estimate_number"
+    value="{{ estimate_number }}"
+    readonly>
+
+                </div>
+
+            </div>
+
+            <div class="form-grid-2">
+
+                <div class="form-group">
+
+                    <label>Valid Until</label>
+
+                    <input
+                        type="date"
+                        name="valid_until"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Currency</label>
+
+                    <select name="currency">
+
+                        <option>ZMW</option>
+                        <option>USD</option>
+                        <option>ZAR</option>
+                        <option>EUR</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <h2 class="section-title">
+                Services
+            </h2>
+
+            <table class="invoice-table" id="itemsTable">
+
+                <thead>
+
+                    <th>Description</th>
+
+<th width="90">Qty</th>
+
+<th width="130">Rate</th>
+
+<th width="120">Discount</th>
+
+<th width="120">Tax %</th>
+
+<th width="140">Total</th>
+
+<th width="60"></th>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+    <td>
+
+        <input
+            type="text"
+            class="description"
+            placeholder="Item or service description">
+
+    </td>
+
+    <td>
+
+        <input
+            type="number"
+            class="qty"
+            value="1"
+            min="1">
+
+    </td>
+
+    <td>
+
+        <input
+            type="number"
+            class="rate"
+            value="0"
+            min="0"
+            step="0.01">
+
+    </td>
+
+    <td>
+
+        <input
+            type="number"
+            class="discount"
+            value="0"
+            min="0"
+            step="0.01">
+
+    </td>
+
+    <td>
+
+        <input
+            type="number"
+            class="tax"
+            value="16"
+            min="0"
+            max="100"
+            step="0.01">
+
+    </td>
+
+    <td class="line-total">
+
+        ZMW 0.00
+
+    </td>
+
+    <td>
+
+        <button
+            type="button"
+            class="delete-row">
+
+            ×
+
+        </button>
+
+    </td>
+
+</tr>
+
+                </tbody>
+
+            </table>
+
+            <br>
+
+            <button
+                type="button"
+                id="addItem"
+                class="primary-btn">
+
+                + Add Service
+
+            </button>
+
+            <br><br>
+
+            <div class="form-group">
+
+                <label>Notes</label>
+
+                <textarea
+                    rows="5"
+                    placeholder="Add notes, payment terms or additional information for your client..."></textarea>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="workspace-side">
+
+        <h2 class="section-title">
+
+            Summary
+
+        </h2>
+
+        <div class="summary-row">
+
+            <span id="subtotal">
+
+ZMW 0.00
+
+</span>
+
+        </div>
+
+        <div class="summary-row">
+
+            <span>Tax</span>
+
+            <span id="taxAmount">
+
+ZMW 0.00
+
+</span>
+
+        </div>
+
+        <div class="summary-row">
+
+            <span>Discount</span>
+
+            <input
+                type="number"
+                id="discount"
+                value="0"
+                min="0"
+                style="width:120px; text-align:right;">
+
+        </div>
+
+        <hr>
+
+        <div class="summary-total">
+
+            <strong>Total</strong>
+
+            <br><br>
+
+            <span id="grandTotal">
+
+ZMW 0.00
+
+</span>
+
+        </div>
+
+        <br>
+
+        <button
+            type="submit"
+            class="primary-btn"
+            style="width:180px;">
+
+            Save Estimate
+
+        </button>
+
+        <br><br>
+
+        <button
+            type="button"
+            class="primary-btn"
+            style="width:180px;">
+
+            Send Estimate
+
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateEstimate(){
+
+    let subtotal = 0;
+
+    document.querySelectorAll("#itemsTable tbody tr").forEach(function(row){
+
+        const qty = parseFloat(row.querySelector(".qty").value) || 0;
+
+        const rate = parseFloat(row.querySelector(".rate").value) || 0;
+
+        const discount = parseFloat(row.querySelector(".discount").value) || 0;
+
+        const tax = parseFloat(row.querySelector(".tax").value) || 0;
+
+        let line = qty * rate;
+
+        line = line - (line * discount / 100);
+
+        const lineTax = line * tax / 100;
+
+        const total = line + lineTax;
+
+        row.querySelector(".line-total").innerText =
+            "ZMW " + total.toFixed(2);
+
+        subtotal += line;
+
+    });
+
+    const overallTax = subtotal * 0.16;
+
+    const grand = subtotal + overallTax;
+
+    document.getElementById("subtotal").innerText =
+        "ZMW " + subtotal.toFixed(2);
+
+    document.getElementById("taxAmount").innerText =
+        "ZMW " + overallTax.toFixed(2);
+
+    document.getElementById("grandTotal").innerText =
+        "ZMW " + grand.toFixed(2);
+
+}
+
+document.addEventListener("input", calculateEstimate);
+
+calculateEstimate();
+
+</script>
+{% endblock %}

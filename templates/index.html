@@ -1,157 +1,141 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
+{% block title %}
+Dashboard - PayOps
+{% endblock %}
 
-    <title>InvoiceFlow Dashboard</title>
+{% block content %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<div class="page-header">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <h1>Dashboard</h1>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <p class="subtext">
+        Welcome back. Here's an overview of your business.
+    </p>
 
-</head>
+</div>
 
-<body>
+<div class="stats-grid">
 
-<div class="layout">
+    <div class="stat-card">
 
-    <!-- Sidebar -->
+        <h3>Total Revenue</h3>
 
-    <div class="sidebar">
-
-        <div class="logo">InvoiceFlow</div>
-
-        <div class="tagline">
-            Create, track and manage invoices effortlessly.
-        </div>
-
-        <a href="/" class="nav-link">Dashboard</a>
-        <a href="/invoice" class="nav-link">Create Invoice</a>
-        <a href="/invoices" class="nav-link">Invoices</a>
+        <h2>K{{ total_revenue }}</h2>
 
     </div>
 
-    <!-- Main Content -->
+    <div class="stat-card">
 
-    <div class="main-content">
+        <h3>Outstanding Invoices</h3>
 
-        <div class="dashboard-header">
+        <h2>{{ overdue_count }}</h2>
 
-            <h1>Dashboard</h1>
+    </div>
 
-            <p class="subtext">
-                Welcome back. Here's what's happening in your business today.
-            </p>
+    <div class="stat-card">
 
-        </div>
+        <h3>Customers</h3>
 
-        <!-- Statistics -->
-
-        <div class="stats-grid">
-
-            <div class="stat-card">
-
-                <h3>Total Invoices</h3>
-
-                <h2>{{ total_invoices }}</h2>
-
-            </div>
-
-            <div class="stat-card">
-
-                <h3>Total Revenue</h3>
-
-                <h2>${{ total_revenue }}</h2>
-
-            </div>
-
-            <div class="stat-card">
-
-                <h3>Customers</h3>
-
-                <h2>{{ total_customers }}</h2>
-
-            </div>
-
-        </div>
-
-        <!-- Quick Actions -->
-
-        <div class="content-panel">
-
-            <div class="panel-header">
-
-                <h2>Quick Actions</h2>
-
-                <p class="subtext">
-                    Start a task quickly.
-                </p>
-
-            </div>
-
-            <a href="/invoice">
-                <button>Create Invoice</button>
-            </a>
-
-            <a href="/invoices">
-                <button>View Invoices</button>
-            </a>
-
-        </div>
-
-        <!-- Recent Invoices -->
-
-        <div class="content-panel">
-
-            <div class="panel-header">
-
-                <h2>Recent Invoices</h2>
-
-                <p class="subtext">
-                    Latest invoice activity.
-                </p>
-
-            </div>
-
-            <table>
-
-                <tr>
-
-                    <th>Invoice</th>
-
-                    <th>Customer</th>
-
-                    <th>Amount</th>
-
-                </tr>
-
-                {% for invoice in recent_invoices %}
-
-                <tr>
-
-                    <td>{{ invoice[2] }}</td>
-
-                    <td>{{ invoice[1] }}</td>
-
-                    <td>${{ invoice[3] }}</td>
-
-                </tr>
-
-                {% endfor %}
-
-            </table>
-
-        </div>
+        <h2>{{ total_customers }}</h2>
 
     </div>
 
 </div>
 
-</body>
+<div class="content-panel">
 
-</html>
+    <div class="panel-header">
+
+        <h2>Quick Actions</h2>
+
+        <p class="subtext">
+            Create and manage your workflow.
+        </p>
+
+    </div>
+
+    <a href="/estimate">
+
+        <button class="primary-btn">
+
+            New Estimate
+
+        </button>
+
+    </a>
+
+    <a href="/invoice">
+
+        <button class="primary-btn">
+
+            New Invoice
+
+        </button>
+
+    </a>
+
+    <a href="/customers">
+
+        <button class="primary-btn">
+
+            Customers
+
+        </button>
+
+    </a>
+
+</div>
+
+<div class="content-panel">
+
+    <div class="panel-header">
+
+        <h2>Recent Activity</h2>
+
+        <p class="subtext">
+            Recently created invoices.
+        </p>
+
+    </div>
+
+    <table class="invoice-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Invoice</th>
+
+                <th>Customer</th>
+
+                <th>Amount</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for invoice in recent_invoices %}
+
+            <tr>
+
+                <td>{{ invoice[2] }}</td>
+
+                <td>{{ invoice[1] }}</td>
+
+                <td>{{ invoice[3] }} {{ invoice[4] }}</td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

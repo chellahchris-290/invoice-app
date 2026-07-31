@@ -1,119 +1,116 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
+{% block title %}
+Invoices - InvoiceFlow
+{% endblock %}
 
-    <title>Invoices - InvoiceFlow</title>
+{% block content %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<div class="page-header">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <h1>Invoices</h1>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-
-</head>
-
-<body>
-
-<div class="layout">
-
-    <!-- Sidebar -->
-
-    <div class="sidebar">
-
-        <div class="logo">
-            InvoiceFlow
-        </div>
-
-        <div class="tagline">
-            Create, track and manage invoices effortlessly.
-        </div>
-
-        <a href="/" class="nav-link">Dashboard</a>
-        <a href="/invoice" class="nav-link">Create Invoice</a>
-        <a href="/invoices" class="nav-link">Invoices</a>
-
-    </div>
-
-    <!-- Main Content -->
-
-    <div class="main-content">
-
-        <h1>Invoices</h1>
-
-        <p class="subtext">
-            Manage all your invoices in one place.
-        </p>
-
-        <div class="content-panel">
-
-            <div class="panel-header">
-
-                <a href="/invoice">
-                    <button>+ New Invoice</button>
-                </a>
-
-            </div>
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>ID</th>
-                        <th>Customer</th>
-                        <th>Invoice Number</th>
-                        <th>Amount</th>
-                        <th>Actions</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                {% for invoice in invoices %}
-
-                    <tr>
-
-                        <td>{{ invoice[0] }}</td>
-
-                        <td>{{ invoice[1] }}</td>
-
-                        <td>{{ invoice[2] }}</td>
-
-                        <td>${{ invoice[3] }}</td>
-
-                        <td>
-
-                            <a href="/edit/{{ invoice[0] }}" class="edit-btn">
-                                Edit
-                            </a>
-
-                            <a href="/delete/{{ invoice[0] }}" class="delete-btn">
-                                Delete
-                            </a>
-
-                        </td>
-
-                    </tr>
-
-                {% endfor %}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
+    <p class="subtext">
+        Manage all customer invoices from one place.
+    </p>
 
 </div>
 
-</body>
+<div class="toolbar">
 
-</html>
+    <input
+        type="text"
+        id="invoiceSearch"
+        placeholder="Search customer or invoice..."
+        class="search-box">
+
+    <a href="/invoice">
+        <button class="primary-btn">
+            + New Invoice
+        </button>
+    </a>
+
+</div>
+
+<div class="content-panel">
+
+<table class="invoice-table">
+
+<thead>
+
+<tr>
+
+<th>Invoice</th>
+
+<th>Customer</th>
+
+<th>Amount</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for invoice in invoices %}
+
+<tr>
+
+<td>{{ invoice[2] }}</td>
+
+<td>{{ invoice[1] }}</td>
+
+<td>K{{ invoice[3] }}</td>
+
+<td>
+
+<a class="edit-btn"
+href="/edit/{{ invoice[0] }}">
+
+Edit
+
+</a>
+
+<a class="delete-btn"
+href="/delete/{{ invoice[0] }}"
+onclick="return confirm('Delete this invoice?')">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+const search=document.getElementById("invoiceSearch");
+
+search.addEventListener("keyup",function(){
+
+let filter=this.value.toLowerCase();
+
+let rows=document.querySelectorAll(".invoice-table tbody tr");
+
+rows.forEach(function(row){
+
+row.style.display=row.innerText.toLowerCase().includes(filter)?"":"none";
+
+});
+
+});
+
+</script>
+
+{% endblock %}

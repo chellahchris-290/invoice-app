@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}InvoiceFlow{% endblock %}</title>
+    <title>{% block title %}PayOps{% endblock %}</title>
 
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
@@ -33,47 +33,58 @@
 
     <div class="sidebar">
 
-        <div class="logo">
+        <div>
 
-            InvoiceFlow
+            <div class="logo">
+                PayOps
+            </div>
+
+            <div class="tagline">
+                Smart business operations platform
+            </div>
+
+            <nav>
+
+                <a href="/"
+                   class="nav-link">
+                    Dashboard
+                </a>
+
+                <a href="/customers"
+                   class="nav-link">
+                    Customers
+                </a>
+
+                <a href="/estimates"
+                   class="nav-link">
+                    Estimates
+                </a>
+
+                <a href="/invoices"
+                   class="nav-link">
+                    Invoices
+                </a>
+
+            </nav>
 
         </div>
 
-        <div class="tagline">
+        <div class="sidebar-bottom">
 
-            Create, track and manage invoices effortlessly.
+            <a href="/settings"
+               class="nav-link">
+                Settings
+            </a>
 
         </div>
-
-        <a href="/"
-           class="nav-link">
-
-            Dashboard
-
-        </a>
-
-        <a href="/invoice"
-           class="nav-link">
-
-            Create Invoice
-
-        </a>
-
-        <a href="/invoices"
-           class="nav-link">
-
-            View Invoices
-
-        </a>
 
     </div>
 
-    <!-- Main -->
+    <!-- Main Content -->
 
     <div class="main-content">
 
         {% block content %}
-
         {% endblock %}
 
     </div>

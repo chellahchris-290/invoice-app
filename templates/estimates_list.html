@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+Estimates
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <h1>Estimates</h1>
+
+    <p class="subtext">
+        Track every estimate from draft to approval.
+    </p>
+
+</div>
+
+<div class="content-panel">
+
+    <div class="toolbar">
+
+        <h2>All Estimates</h2>
+
+        <a href="/estimate">
+
+            <button class="primary-btn">
+
+                + New Estimate
+
+            </button>
+
+        </a>
+
+    </div>
+
+    <table class="invoice-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Estimate</th>
+
+                <th>Customer</th>
+
+                <th>Status</th>
+
+                <th>Total</th>
+
+                <th>Valid Until</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for estimate in estimates %}
+
+            <tr>
+
+                <td>{{ estimate[1] }}</td>
+
+                <td>{{ estimate[2] or "-" }}</td>
+
+                <td>
+
+                    <span class="status-badge">
+
+                        {{ estimate[3] }}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    K{{ "%.2f"|format(estimate[4] or 0) }}
+
+                </td>
+
+                <td>
+
+                    {{ estimate[5] or "-" }}
+
+                </td>
+
+                <td>
+
+                    <a href="#" class="edit-btn">
+
+                        View
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        {% else %}
+
+            <tr>
+
+                <td colspan="6" style="text-align:center;padding:40px;">
+
+                    No estimates created yet.
+
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

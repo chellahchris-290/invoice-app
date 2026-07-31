@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+Settings
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <h1>Company Settings</h1>
+
+    <p class="subtext">
+        Configure your business information.
+    </p>
+
+</div>
+
+<div class="content-panel">
+
+<form>
+
+<div class="form-group">
+
+<label>Company Name</label>
+
+<input
+type="text"
+placeholder="InvoiceFlow Ltd">
+
+</div>
+
+<div class="form-group">
+
+<label>Phone Number</label>
+
+<input
+type="text"
+placeholder="+260 977 123456">
+
+</div>
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+type="email"
+placeholder="info@company.com">
+
+</div>
+
+<div class="form-group">
+
+<label>Address</label>
+
+<textarea
+rows="4"
+placeholder="Company Address"></textarea>
+
+</div>
+
+<br>
+
+<button
+class="primary-btn">
+
+Save Settings
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}
