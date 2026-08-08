@@ -40,11 +40,13 @@ Invoices - InvoiceFlow
 
 <tr>
 
-<th>Invoice</th>
+<th>Invoice #</th>
 
 <th>Customer</th>
 
-<th>Amount</th>
+<th>Total</th>
+
+<th>Status</th>
 
 <th>Actions</th>
 
@@ -58,30 +60,28 @@ Invoices - InvoiceFlow
 
 <tr>
 
-<td>{{ invoice[2] }}</td>
+    <td>{{ invoice[2] }}</td>
 
-<td>{{ invoice[1] }}</td>
+    <td>{{ invoice[1] }}</td>
 
-<td>K{{ invoice[3] }}</td>
+    <td>K{{ "%.2f"|format(invoice[3]) }}</td>
 
-<td>
+    <td>{{ invoice[4] }}</td>
 
-<a class="edit-btn"
-href="/edit/{{ invoice[0] }}">
+    <td>
 
-Edit
+        <a class="edit-btn"
+           href="/edit/{{ invoice[0] }}">
+            Edit
+        </a>
 
-</a>
+        <a class="delete-btn"
+           href="/delete/{{ invoice[0] }}"
+           onclick="return confirm('Delete this invoice?')">
+            Delete
+        </a>
 
-<a class="delete-btn"
-href="/delete/{{ invoice[0] }}"
-onclick="return confirm('Delete this invoice?')">
-
-Delete
-
-</a>
-
-</td>
+    </td>
 
 </tr>
 

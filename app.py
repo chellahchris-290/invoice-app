@@ -28,7 +28,7 @@ def send_reminder(invoice_id):
     body = f"""
     Dear {invoice['customer']},
     
-    This is a friendly reminder that invoice #{invoice['invoice_number']} for ${invoice['amount']} is outstanding.
+    This is a friendly reminder that invoice #{invoice['invoice_number']} for ${invoice['grand_total']} is outstanding.
     
     Please make payment at your earliest convenience.
     
@@ -174,7 +174,16 @@ def invoices():
 
     cursor = connection.cursor()
 
-    cursor.execute("SELECT * FROM invoices")
+    cursor.execute("""
+    SELECT
+        id,
+        customer,
+        invoice_number,
+        grand_total,
+        status
+    FROM invoices
+    ORDER BY id DESC
+""")
 
     invoices = cursor.fetchall()
 
@@ -212,9 +221,17 @@ def edit_invoice(id):
     cursor = connection.cursor()
 
     cursor.execute(
-        "SELECT id, customer, invoice_number, amount FROM invoices WHERE id=?",
-        (id,)
-    )
+    """
+    SELECT
+        id,
+        customer,
+        invoice_number,
+        grand_total
+    FROM invoices
+    WHERE id = ?
+    """,
+    (id,)
+)
 
     invoice = cursor.fetchone()
     connection.close()
@@ -225,16 +242,28 @@ def update_invoice(id):
 
     customer = request.form["customer"]
     invoice_number = request.form["invoice_number"]
-    amount = request.form["amount"]
+    amount = float(request.form["amount"])
 
     connection = sqlite3.connect("invoices.db")
     cursor = connection.cursor()
 
     cursor.execute("""
         UPDATE invoices
-        SET customer=?, invoice_number=?, amount=?
-        WHERE id=?
-    """, (customer, invoice_number, amount, id))
+        SET
+            customer = ?,
+            invoice_number = ?,
+            subtotal = ?,
+            tax_amount = ?,
+            grand_total = ?
+        WHERE id = ?
+    """, (
+        customer,
+        invoice_number,
+        amount,
+        0,
+        amount,
+        id
+    ))
 
     connection.commit()
     connection.close()
